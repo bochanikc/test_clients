@@ -9,6 +9,6 @@ from locators.RegistrationPage import RegistrationPage
 
 class TestRegistrationPage:
 
-    def test_empty_name_field(self, browser):
+    def test_empty_name_field(self, browser, test_go_to_registration_page):
         pass
 
