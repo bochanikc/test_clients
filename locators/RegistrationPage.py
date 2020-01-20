@@ -11,3 +11,7 @@ class RegistrationPage:
     submit_button = 'input[type=submit]'
 
     rocket_image = '.art-obj__rocket'
+
+
+class FailMessage:
+    fail_message = '.invalid-tooltip'
