@@ -76,6 +76,7 @@ class TestAutorizationRegress:
         bro.find_element(By.CSS_SELECTOR, f".in3[href='{url}register']").click()
         bro.find_element(By.CSS_SELECTOR, RegistrationPage.name_field)
         bro.find_element(By.CSS_SELECTOR, RegistrationPage.submit_button)
+        bro.find_element(By.CSS_SELECTOR, RegistrationPage.rocket_image)
 
     def test_go_to_forgot_password_page(self, browser):
         bro = browser
