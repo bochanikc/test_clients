@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from locators.EmailSubmitPage import EmailSubmitPage
 from locators.RegistrationPage import RegistrationPage, FailMessage
 
+
 @pytest.fixture()
 def generate_test_data():
     now_time = str(int(time.time()))
@@ -17,6 +18,7 @@ def generate_test_data():
     password = "Qwerty123"
     phone = random.randint(1000000000, 9999999999)
     return name, surname, email, company_name, password, phone
+
 
 class TestRegistrationPage:
 
