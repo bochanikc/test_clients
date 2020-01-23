@@ -7,19 +7,22 @@ from selenium.webdriver.common.by import By
 from locators.EmailSubmitPage import EmailSubmitPage
 from locators.RegistrationPage import RegistrationPage, FailMessage
 
+@pytest.fixture()
+def generate_test_data():
+    now_time = str(int(time.time()))
+    name = "Имяселениумтест" + now_time
+    surname = "Фамилия" + now_time
+    email = "email" + now_time + "@email.com"
+    company_name = "Company Selenium " + now_time + " inc."
+    password = "Qwerty123"
+    phone = random.randint(1000000000, 9999999999)
+    return name, surname, email, company_name, password, phone
 
 class TestRegistrationPage:
 
-    def test_registration_success(self, browser, test_go_to_registration_page):
+    def test_registration_success(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
-
-        now_time = str(int(time.time()))
-        name = "Имяселениумтест" + now_time
-        surname = "Фамилия" + now_time
-        email = "email" + now_time + "@email.com"
-        company_name = "Company Selenium " + now_time + " inc."
-        password = "Qwerty123"
-        phone = random.randint(1000000000, 9999999999)
+        name, surname, email, company_name, password, phone = generate_test_data
 
         bro.find_element(By.CSS_SELECTOR, RegistrationPage.name_field).send_keys(name)
         bro.find_element(By.CSS_SELECTOR, RegistrationPage.surname_field).send_keys(surname)
@@ -36,17 +39,10 @@ class TestRegistrationPage:
         assert bro.find_element(By.CSS_SELECTOR,
                                 EmailSubmitPage.link_send_submit_again).text == "нажмите здесь для повторной отправки"
 
-    def test_empty_name_field(self, browser, test_go_to_registration_page):
+    def test_empty_name_field(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
+        name, surname, email, company_name, password, phone = generate_test_data
         expected_fail_text = 'Поле имя обязательно для заполнения.'
-
-        now_time = str(int(time.time()))
-        name = "Имяселениумтест" + now_time
-        surname = "Фамилия" + now_time
-        email = "email" + now_time + "@email.com"
-        company_name = "Company Selenium " + now_time + " inc."
-        password = "Qwerty123"
-        phone = random.randint(1000000000, 9999999999)
 
         bro.find_element(By.CSS_SELECTOR, RegistrationPage.surname_field).send_keys(surname)
         bro.find_element(By.CSS_SELECTOR, RegistrationPage.email_field).send_keys(email)
