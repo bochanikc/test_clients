@@ -1,8 +1,8 @@
 class AutorizationPage:
-    autorization_page = '.authorization-page'
-    email_field = '#inputEmail'
-    password_field = '#inputPassword'
-    submit_button = '.needs-validation [type=submit]'
+    autorization_page = {'css': '.authorization-page'}
+    email_field = {'css': '#inputEmail'}
+    password_field = {'css': '#inputPassword'}
+    submit_button = {'css': '.needs-validation [type=submit]'}
 
 class FailMessage:
     email_empty_field = ''

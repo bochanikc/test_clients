@@ -1,3 +1,3 @@
 class ForgotPassword:
-    email_field = '#inputEmail'
-    submit_button = 'input[type=submit]'
+    email_field =  {'css': '#inputEmail'}
+    submit_button =  {'css': 'input[type=submit]'}

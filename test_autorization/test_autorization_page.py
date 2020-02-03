@@ -1,36 +1,33 @@
 import time
-
 from selenium.webdriver.common.by import By
-
-from locators.AutorizationPage import AutorizationPage
-from locators.ForgotPasswordPage import ForgotPassword
-from locators.RegisterPage import RegisterPage
-from locators.RegistrationPage import RegistrationPage
+from locators import AutorizationPage, ForgotPassword, RegisterPage, RegistrationPage
 
 
 class TestAutorizationRegress:
 
     def test_autorization_success(self, browser):
         bro = browser
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.email_field).send_keys(
+        #Заполняем поля авторизации
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.email_field['css']).send_keys(
             'nfrolov@email.ru')
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field).send_keys('12345678')
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button).click()
-        bro.find_element(By.CSS_SELECTOR, RegisterPage.register_page)
-        bro.find_element(By.CSS_SELECTOR, RegisterPage.search_block)
-        bro.find_element(By.CSS_SELECTOR, RegisterPage.logout_button)
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field['css']).send_keys('Qwerty123')
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button['css']).click()
+        #Проверяем, что авторизировались
+        bro.find_element(By.CSS_SELECTOR, RegisterPage.register_page['css'])
+        bro.find_element(By.CSS_SELECTOR, RegisterPage.search_block['css'])
+        bro.find_element(By.CSS_SELECTOR, RegisterPage.logout_button['css'])
 
     def test_logout(self, browser):
         bro = browser
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.email_field).send_keys(
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.email_field['css']).send_keys(
             'nfrolov@email.ru')
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field).send_keys('12345678')
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button).click()
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field['css']).send_keys('Qwerty123')
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button['css']).click()
         time.sleep(5)
-        bro.find_element(By.CSS_SELECTOR, RegisterPage.logout_button).click()
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.autorization_page)
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.email_field)
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field)
+        bro.find_element(By.CSS_SELECTOR, RegisterPage.logout_button['css']).click()
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.autorization_page['css'])
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.email_field['css'])
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field['css'])
 
     def test_autorization_email_empty_field(self, browser):
         bro = browser
