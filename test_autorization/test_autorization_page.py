@@ -1,6 +1,6 @@
 import time
 from selenium.webdriver.common.by import By
-from locators import AutorizationPage, ForgotPassword, RegisterPage, RegistrationPage, FailMessage
+from locators import AutorizationPage, ForgotPassword, RegisterPage, RegistrationPage, Common
 
 
 class TestAutorizationRegress:
@@ -34,7 +34,7 @@ class TestAutorizationRegress:
         expected_fail_text = 'Поле электронный адрес обязательно для заполнения.'
         bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field['css']).send_keys('Qwerty123')
         bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button['css']).click()
-        fail_text = bro.find_element(By.CSS_SELECTOR, FailMessage.fail_message['css']).text
+        fail_text = bro.find_element(By.CSS_SELECTOR, Common.Alerts.FailMessage.fail_message['css']).text
         assert fail_text == expected_fail_text, "Ошибка не корректна"
 
     def test_autorization_password_empty_field(self, browser):
@@ -42,8 +42,8 @@ class TestAutorizationRegress:
         expected_fail_text = 'Поле пароль обязательно для заполнения.'
         bro.find_element(By.CSS_SELECTOR, AutorizationPage.email_field['css']).send_keys(
             'nfrolov@email.ru')
-        bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button)['css'].click()
-        fail_text = bro.find_element(By.CSS_SELECTOR, FailMessage.fail_message['css']).text
+        bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button['css']).click()
+        fail_text = bro.find_element(By.CSS_SELECTOR, Common.Alerts.FailMessage.fail_message['css']).text
         assert fail_text == expected_fail_text, "Ошибка не корректна"
 
     def test_autorization_password_invalid(self, browser):
@@ -54,7 +54,7 @@ class TestAutorizationRegress:
         bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field['css']).send_keys(
             'Qwerty123' + '21')
         bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button['css']).click()
-        fail_text = bro.find_element(By.CSS_SELECTOR, FailMessage.fail_message['css']).text
+        fail_text = bro.find_element(By.CSS_SELECTOR, Common.Alerts.FailMessage.fail_message['css']).text
         assert fail_text == expected_fail_text, "Ошибка не корректна"
 
     def test_autorization_email_invalid(self, browser):
@@ -64,7 +64,7 @@ class TestAutorizationRegress:
             'nfrolov@email.ru' + '21')
         bro.find_element(By.CSS_SELECTOR, AutorizationPage.password_field['css']).send_keys('Qwerty123')
         bro.find_element(By.CSS_SELECTOR, AutorizationPage.submit_button['css']).click()
-        fail_text = bro.find_element(By.CSS_SELECTOR, FailMessage.fail_message['css']).text
+        fail_text = bro.find_element(By.CSS_SELECTOR, Common.Alerts.FailMessage.fail_message['css']).text
         assert fail_text == expected_fail_text, "Ошибка не корректна"
 
     def test_go_to_registration_page(self, browser):

@@ -1,2 +1,4 @@
 class Common:
-    pass
+    class Alerts:
+        class FailMessage:
+            fail_message = {'css': '.invalid-tooltip'}

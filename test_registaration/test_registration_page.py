@@ -3,7 +3,7 @@ import time
 
 import pytest
 from selenium.webdriver.common.by import By
-from locators import EmailSubmitPage, RegistrationPage, FailMessage
+from locators import EmailSubmitPage, RegistrationPage, Common
 
 
 @pytest.fixture()
@@ -56,5 +56,5 @@ class TestRegistrationPage:
         bro.execute_script("return arguments[0].scrollIntoView(true);", button)
         button.click()
 
-        fail_text = bro.find_element(By.CSS_SELECTOR, FailMessage.fail_message['css']).text
+        fail_text = bro.find_element(By.CSS_SELECTOR, Common.Alerts.FailMessage.fail_message['css']).text
         assert fail_text == expected_fail_text, "Ошибка не корректна"

@@ -1,4 +1,4 @@
-from .RegistrationPage import RegistrationPage, FailMessage
+from .RegistrationPage import RegistrationPage
 from .EmailSubmitPage import EmailSubmitPage
 from .RegisterPage import RegisterPage
 from .AutorizationPage import AutorizationPage

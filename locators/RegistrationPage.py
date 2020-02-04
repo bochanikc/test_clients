@@ -12,6 +12,3 @@ class RegistrationPage:
 
     rocket_image = {'css': '.art-obj__rocket'}
 
-
-class FailMessage:
-    fail_message = {'css': '.invalid-tooltip'}
