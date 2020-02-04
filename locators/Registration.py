@@ -1,4 +1,4 @@
-class RegistrationPage:
+class Registration:
     name_field = {'css': '#inputName'}
     surname_field = {'css': '#inputSurame'}
     email_field = {'css': '#inputEmail'}

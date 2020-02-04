@@ -51,7 +51,7 @@ def browser(request):
 
     driver.implicitly_wait(5)
     driver.maximize_window()
-    request.addfinalizer(driver.quit)
     driver.get(request.config.getoption("--url"))
+    request.addfinalizer(driver.quit)
 
     return driver

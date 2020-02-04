@@ -1,4 +1,4 @@
-class AutorizationPage:
+class Autorization:
     autorization_page = {'css': '.authorization-page'}
     email_field = {'css': '#inputEmail'}
     password_field = {'css': '#inputPassword'}
