@@ -1,20 +1,19 @@
 from selenium.webdriver.common.by import By
 from locators import Autorization
+from .BasePage import BasePage
 
-class AutorizationPage:
 
-    def __init__(self, driver):
-        self.driver = driver
+class AutorizationPage(BasePage):
 
     def located_autorization_page(self):
-        self.driver.find_element(By.CSS_SELECTOR, Autorization.autorization_page['css'])
-        self.driver.find_element(By.CSS_SELECTOR, Autorization.email_field['css'])
-        self.driver.find_element(By.CSS_SELECTOR, Autorization.password_field['css'])
+        self._wait_for_visible(Autorization.autorization_page)
+        self._wait_for_visible(Autorization.email_field)
+        self._wait_for_visible(Autorization.password_field)
 
     def auth_by_user(self, email, password):
-        self.driver.find_element(By.CSS_SELECTOR, Autorization.email_field['css']).send_keys(email)
-        self.driver.find_element(By.CSS_SELECTOR, Autorization.password_field['css']).send_keys(password)
-        self.driver.find_element(By.CSS_SELECTOR, Autorization.submit_button['css']).click()
+        self._input(Autorization.email_field, email)
+        self._input(Autorization.password_field, password)
+        self._click(Autorization.submit_button)
 
     def go_to_regitration_page_on_link(self, url):
         self.driver.find_element(By.CSS_SELECTOR, f".in3[href='{url}register']").click()

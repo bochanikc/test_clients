@@ -91,7 +91,7 @@ class TestRegistrationPage:
         bro = browser
         name, surname, email, company_name, password, confirm_password, phone = generate_test_data
         expected_fail_text = 'Поле электронный адрес должно быть действительным электронным адресом.'
-        email = email[0:10]
+        email = email[0:len(email)-10]
         RegistrationPage(bro).registration_new_user(name, surname, email, company_name,
                                                     password, confirm_password, phone)
         Alerts(bro).check_fail_alert_of_field(expected_fail_text)

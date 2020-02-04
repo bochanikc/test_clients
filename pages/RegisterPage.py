@@ -1,15 +1,13 @@
-from selenium.webdriver.common.by import By
 from locators import Register
+from .BasePage import BasePage
 
-class RegisterPage:
 
-    def __init__(self, driver):
-        self.driver = driver
+class RegisterPage(BasePage):
 
     def located_regisrer_page(self):
-        self.driver.find_element(By.CSS_SELECTOR, Register.register_page['css'])
-        self.driver.find_element(By.CSS_SELECTOR, Register.search_block['css'])
-        self.driver.find_element(By.CSS_SELECTOR, Register.logout_button['css'])
+        self._wait_for_visible(Register.register_page)
+        self._wait_for_visible(Register.search_block)
+        self._wait_for_visible(Register.logout_button)
 
     def logout_user(self):
-        self.driver.find_element(By.CSS_SELECTOR, Register.logout_button['css']).click()
+        self._click(Register.logout_button)
