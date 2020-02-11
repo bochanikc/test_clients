@@ -5,6 +5,8 @@ from pages.common import Alerts
 
 class TestRegistrationPage:
 
+    @pytest.mark.xfail
+    @pytest.mark.smoke
     def test_registration_success(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
         name, surname, email, company_name, password, confirm_password, phone = generate_test_data
@@ -60,7 +62,7 @@ class TestRegistrationPage:
                                  ('12345', 'Количество символов в поле пароль должно быть не менее 8'),
                                  ('Qwerty', 'Количество символов в поле пароль должно быть не менее 8'),
                                  ('Qwerty1', 'Количество символов в поле пароль должно быть не менее 8'),
-                                 ('Qwertyui', 'Поле пароль имеет ошибочный формат.')
+                                 ('Qwertyui', 'Поле пароль имеет ошибочный формат')
                              ])
     def test_incorrect_password_field(self, browser, test_go_to_registration_page, generate_test_data,
                                       password_param, expected_fail_text):
