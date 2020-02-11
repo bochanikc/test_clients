@@ -1,12 +1,16 @@
+import allure
 import pytest
 from pages import RegistrationPage, EmailSubmitPage
 from pages.common import Alerts
 
 
-class TestRegistrationPage:
+@pytest.mark.smoke
+@allure.feature('Регистрация')
+@allure.story('Успешная регистрация')
+@allure.severity(allure.severity_level.CRITICAL)
+class TestRegistrationPageSmoke:
 
     @pytest.mark.xfail
-    @pytest.mark.smoke
     def test_registration_success(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
         name, surname, email, company_name, password, confirm_password, phone = generate_test_data
@@ -21,6 +25,12 @@ class TestRegistrationPage:
               + '\nФамилия: ' + surname
               + '\nИмя компании: ' + company_name
               + '\nТелефон: ' + str(phone))
+
+
+@allure.feature('Регистрация')
+@allure.story('Ошибки в заполнении полей')
+@allure.severity(allure.severity_level.MINOR)
+class TestRegistrationPageRegress:
 
     def test_empty_name_field(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
