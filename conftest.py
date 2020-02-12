@@ -37,7 +37,7 @@ def pytest_addoption(parser):
 #     return driver
 
 
-@pytest.fixture(params=["chrome", "firefox"])
+@pytest.fixture(params=["chrome"])
 def browser(request):
     browser_param = request.param
     if browser_param == "chrome":

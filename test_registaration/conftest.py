@@ -18,8 +18,7 @@ def generate_test_data():
     name = "Имяселениумтест" + now_time
     surname = "Фамилия" + now_time
     email = "email" + now_time + "@email.com"
-    company_name = "Company Selenium " + now_time + " inc."
     password = "Qwerty123"
     phone = random.randint(1000000000, 9999999999)
-    return name, surname, email, company_name, password, password, phone
+    return name, surname, email, password, password, phone
 

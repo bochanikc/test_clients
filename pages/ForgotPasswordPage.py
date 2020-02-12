@@ -9,3 +9,4 @@ class ForgotPasswordPage(BasePage):
         with allure.step("проверяем, что находимся на странице 'Забыли пароль' "):
             self._wait_for_visible(ForgotPassword.email_field)
             self._wait_for_visible(ForgotPassword.submit_button)
+            self._wait_for_visible(ForgotPassword.image_forgot_password)
