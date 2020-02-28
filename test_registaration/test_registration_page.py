@@ -13,6 +13,7 @@ class TestRegistrationPageSmoke:
     def test_registration_success(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
         name, surname, email, password, confirm_password, phone = generate_test_data
+        print(phone)
         RegistrationPage(bro).registration_new_user(name, surname, email, password, confirm_password, phone)
         EmailSubmitPage(bro).located_email_submit_page()
         print('\n-------------------------------------------'

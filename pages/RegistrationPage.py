@@ -24,6 +24,7 @@ class RegistrationPage(BasePage):
             self._input(Registration.password_field, password)
             self._input(Registration.password_confirm_field, confirm_password)
             self._input(Registration.phone_field, phone)
+            phone = self._get_value_from_field(Registration.phone_field)
             # self._click(Registration.news_subscribe_checkbox_check)
             self._click(Registration.submit_button)
             allure.attach('\nemail: ' + email
