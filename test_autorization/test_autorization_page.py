@@ -1,7 +1,7 @@
 import allure
 import pytest
-import time
-from pages import AutorizationPage, RegisterPage, RegistrationPage, ForgotPasswordPage
+from data_for_test import TestAccount
+from pages import AutorizationPage, SearchRequestPage, RegistrationPage, ForgotPasswordPage, GuestCodePage
 from pages.common import Alerts
 
 
@@ -11,18 +11,25 @@ from pages.common import Alerts
 class TestAutorizationSmoke:
 
     @allure.story('Успешная авторизация')
+    @pytest.fixture()
     def test_autorization_success(self, browser):
         bro = browser
-        AutorizationPage(bro).auth_by_user('nfrolov@email.ru', 'Qwerty123')
-        RegisterPage(bro).located_regisrer_page()
+        AutorizationPage(bro).auth_by_user(TestAccount.LOGIN, TestAccount.PASSWORD)
+        SearchRequestPage(bro).located_search_request_page()
+
+    @allure.story('Переход на страницу входа по коду')
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_go_to_guest_code_page(self, browser):
+        bro = browser
+        AutorizationPage(bro).go_to_guest_code_page()
+        GuestCodePage(bro).located_guest_code_page()
 
     @allure.story('Логаут')
     @allure.severity(allure.severity_level.NORMAL)
-    def test_logout(self, browser):
+    def test_logout(self, browser, test_autorization_success):
         bro = browser
-        AutorizationPage(bro).auth_by_user('nfrolov@email.ru', 'Qwerty123')
-        time.sleep(5)
-        RegisterPage(bro).logout_user()
+        #time.sleep(5)
+        SearchRequestPage(bro).logout_user()
         AutorizationPage(bro).located_autorization_page()
 
     @allure.story('Переход на страницу регистрации')
@@ -49,23 +56,25 @@ class TestAutorizationFailFields:
     def test_autorization_email_empty_field(self, browser):
         bro = browser
         expected_fail_text = 'Поле электронный адрес обязательно для заполнения'
-        AutorizationPage(bro).auth_by_user('', 'Qwerty123')
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        AutorizationPage(bro).auth_by_user('', TestAccount.PASSWORD)
+        Alerts(bro).check_fail_other_alert(expected_fail_text)
 
     def test_autorization_password_empty_field(self, browser):
         bro = browser
         expected_fail_text = 'Поле пароль обязательно для заполнения'
-        AutorizationPage(bro).auth_by_user('nfrolov@email.ru', '')
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        AutorizationPage(bro).auth_by_user(TestAccount.LOGIN, '')
+        Alerts(bro).check_fail_other_alert(expected_fail_text)
 
     def test_autorization_password_invalid(self, browser):
         bro = browser
-        expected_fail_text = 'Имя пользователя и пароль не совпадают'
-        AutorizationPage(bro).auth_by_user('nfrolov@email.ru', 'Qwerty123' + '21')
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        expected_fail_text = 'Имя пользователя и пароль не совпадают. Если вам в письме пришел код доступа, ' \
+                             'перейдите по ссылке "Войти по коду доступа" над кнопкой "Войти"'
+        AutorizationPage(bro).auth_by_user(TestAccount.LOGIN, TestAccount.PASSWORD + '21')
+        Alerts(bro).check_fail_other_alert(expected_fail_text)
 
     def test_autorization_email_invalid(self, browser):
         bro = browser
-        expected_fail_text = 'Имя пользователя и пароль не совпадают'
-        AutorizationPage(bro).auth_by_user('nfrolov@email.ru' + '21', 'Qwerty123')
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        expected_fail_text = 'Имя пользователя и пароль не совпадают. Если вам в письме пришел код доступа, ' \
+                             'перейдите по ссылке "Войти по коду доступа" над кнопкой "Войти"'
+        AutorizationPage(bro).auth_by_user(TestAccount.LOGIN + '21', TestAccount.PASSWORD)
+        Alerts(bro).check_fail_other_alert(expected_fail_text)

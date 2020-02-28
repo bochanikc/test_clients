@@ -37,7 +37,7 @@ def pytest_addoption(parser):
 #     return driver
 
 
-@pytest.fixture(params=["ie"])
+@pytest.fixture(params=["chrome"])
 def browser(request):
     browser_param = request.param
     if browser_param == "chrome":
@@ -46,6 +46,9 @@ def browser(request):
         driver = webdriver.Firefox()
     elif browser_param == "ie":
         driver = webdriver.Ie()
+    elif browser_param == "Remote":
+        driver = webdriver.Remote("http://172.16.169.137:4444/",
+                                  desired_capabilities={'browserName': 'chrome'})
     else:
         raise Exception(f"{request.param} is not supported!")
 

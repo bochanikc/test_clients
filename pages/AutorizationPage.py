@@ -18,6 +18,10 @@ class AutorizationPage(BasePage):
             self._input(Autorization.password_field, password)
             self._click(Autorization.submit_button)
 
+    def go_to_guest_code_page(self):
+        with allure.step(f"Переходим на страницу 'вход по коду'"):
+            self._click(Autorization.guest_code_page)
+
     def go_to_regitration_page_on_link(self, url):
         with allure.step("Проходим на страницу регистрации "):
             self.driver.find_element(By.CSS_SELECTOR, f".in3[href='{url}register']").click()

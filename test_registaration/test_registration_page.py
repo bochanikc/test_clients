@@ -34,21 +34,21 @@ class TestRegistrationPageRegress:
         expected_fail_text = 'Поле имя обязательно для заполнения'
         name, surname, email, password, confirm_password, phone = generate_test_data
         RegistrationPage(bro).registration_new_user('', surname, email, password, confirm_password, phone)
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        Alerts(bro).check_fail_alert_from_server_on_field(expected_fail_text)
 
     def test_empty_surname_field(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
         expected_fail_text = 'Поле фамилия обязательно для заполнения'
         name, surname, email, password, confirm_password, phone = generate_test_data
         RegistrationPage(bro).registration_new_user(name, '', email, password, confirm_password, phone)
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        Alerts(bro).check_fail_alert_from_server_on_field(expected_fail_text)
 
     def test_empty_email_field(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
         expected_fail_text = 'Поле электронный адрес обязательно для заполнения'
         name, surname, email, password, confirm_password, phone = generate_test_data
         RegistrationPage(bro).registration_new_user(name, surname, '', password, confirm_password, phone)
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        Alerts(bro).check_fail_alert_from_server_on_field(expected_fail_text)
 
 
     def test_empty_password_field(self, browser, test_go_to_registration_page, generate_test_data):
@@ -56,7 +56,7 @@ class TestRegistrationPageRegress:
         expected_fail_text = 'Поле пароль обязательно для заполнения'
         name, surname, email, password, confirm_password, phone = generate_test_data
         RegistrationPage(bro).registration_new_user(name, surname, email, '', confirm_password, phone)
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        Alerts(bro).check_fail_alert_from_server_on_field(expected_fail_text)
 
     @pytest.mark.parametrize('password_param, expected_fail_text',
                              [
@@ -72,7 +72,7 @@ class TestRegistrationPageRegress:
         password = password_param
         confirm_password = password_param
         RegistrationPage(bro).registration_new_user(name, surname, email, password, confirm_password, phone)
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        Alerts(bro).check_fail_alert_from_server_on_field(expected_fail_text)
 
     def test_incorrect_email_field(self, browser, test_go_to_registration_page, generate_test_data):
         bro = browser
@@ -80,4 +80,4 @@ class TestRegistrationPageRegress:
         name, surname, email, password, confirm_password, phone = generate_test_data
         email = email[0:len(email) - 10]
         RegistrationPage(bro).registration_new_user(name, surname, email, password, confirm_password, phone)
-        Alerts(bro).check_fail_alert_of_field(expected_fail_text)
+        Alerts(bro).check_fail_alert_from_server_on_field(expected_fail_text)
