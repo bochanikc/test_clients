@@ -9,5 +9,7 @@ class TestAccount:
     """
     LOGIN = 'forautotest@test.com'
     PASSWORD = 'Qwerty123'
+    NAME = 'Автотест'
+    SURNAME = 'Фамилия'
     PHONE_NUMBER = '2284747474'
     CLIENT_CODE = '74bzwON8ef'

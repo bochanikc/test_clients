@@ -10,4 +10,3 @@ class Registration:
     submit_button = {'css': 'input[type=submit]'}
 
     rocket_image = {'css': 'div .art img'}
-

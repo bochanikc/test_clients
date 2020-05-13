@@ -24,8 +24,8 @@ class AutorizationPage(BasePage):
 
     def go_to_regitration_page_on_link(self, url):
         with allure.step("Проходим на страницу регистрации "):
-            self.driver.find_element(By.CSS_SELECTOR, f".in3[href='{url}register']").click()
+            self.driver.find_element(By.CSS_SELECTOR, f".in3[href='{url}/register']").click()
 
     def go_to_password_reset_page_on_link(self, url):
         with allure.step("Проходим на страницу 'Сбросить пароль' "):
-            self.driver.find_element(By.CSS_SELECTOR, f".in3[href='{url}password/reset']").click()
+            self.driver.find_element(By.CSS_SELECTOR, f".in3[href='{url}/password/reset']").click()
