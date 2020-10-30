@@ -13,7 +13,7 @@ def pytest_addoption(parser):
     parser.addoption(
         "--url", "-U",
         action="store",
-        default="http://clients.homestead/",
+        default="http://clients.homestead:1370/",
         help="Write url"
     )
 

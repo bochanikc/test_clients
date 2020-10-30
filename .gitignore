@@ -132,5 +132,9 @@ dmypy.json
 assets/
 report.html
 
+#idea files
+.idea/
+
 #allure-reports
 allure-report/
+results/
