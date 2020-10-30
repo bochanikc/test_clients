@@ -138,3 +138,6 @@ report.html
 #allure-reports
 allure-report/
 results/
+
+#Firefox files
+*/geckodriver.log
